@@ -23,10 +23,10 @@
 }
 
 body {
-  background: #f4efe7;
-  color: #1f2933;
+  background: #f2efe6;
+  color: #1a2f3a;
 }
 
 ::selection {
-  background: #d7e4da;
+  background: #c7e5ec;
 }

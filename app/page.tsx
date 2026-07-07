@@ -191,7 +191,7 @@ export default function Home() {
               </p>
               {hasDonationLink ? (
                 <a
-                  className="mt-5 inline-flex min-h-11 items-center justify-center rounded-md bg-church-accent px-5 text-sm font-medium text-white transition-colors hover:bg-[#203f35] focus:outline-none focus:ring-2 focus:ring-church-accent focus:ring-offset-2 focus:ring-offset-church-background md:hidden"
+                  className="mt-5 inline-flex min-h-11 items-center justify-center rounded-md bg-church-accent px-5 text-sm font-medium text-white transition-colors hover:bg-church-accentHover focus:outline-none focus:ring-2 focus:ring-church-accent focus:ring-offset-2 focus:ring-offset-church-background md:hidden"
                   href={churchContent.donations.link}
                   rel="noreferrer"
                   target="_blank"

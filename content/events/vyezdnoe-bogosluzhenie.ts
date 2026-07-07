@@ -1,5 +1,4 @@
 export const vyezdnoeBogosluzhenieContent = {
-export const vyezdnoeBogosluzhenieContent = {
   slug: "vyezdnoe-bogosluzhenie",
   title: "Выездное богослужение",
   subtitle: "Церковь Божия города Минеральные Воды",

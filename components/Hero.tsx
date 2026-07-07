@@ -7,7 +7,7 @@ export function Hero() {
   )?.href;
 
   return (
-    <section className="bg-[linear-gradient(135deg,#F4EFE7_0%,#F4EFE7_52%,#E1E9E2_52%,#E1E9E2_100%)]">
+    <section className="bg-[linear-gradient(135deg,#F2EFE6_0%,#F2EFE6_52%,#D8EEF2_52%,#D8EEF2_100%)]">
       <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
         <div className="max-w-4xl">
           <p className="text-base font-medium text-church-accent">
@@ -43,7 +43,7 @@ export function Hero() {
             </dl>
             <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
               <a
-                className="inline-flex min-h-11 items-center justify-center rounded-md bg-church-accent px-5 text-sm font-medium text-white transition-colors hover:bg-[#203f35] focus:outline-none focus:ring-2 focus:ring-church-accent focus:ring-offset-2 focus:ring-offset-church-surface"
+                className="inline-flex min-h-11 items-center justify-center rounded-md bg-church-accent px-5 text-sm font-medium text-white transition-colors hover:bg-church-accentHover focus:outline-none focus:ring-2 focus:ring-church-accent focus:ring-offset-2 focus:ring-offset-church-surface"
                 href="#contacts"
               >
                 Контакты

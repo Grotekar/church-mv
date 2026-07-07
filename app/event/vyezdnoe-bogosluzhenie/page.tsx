@@ -27,7 +27,7 @@ export default function VyezdnoeBogosluzheniePage() {
     <>
       <EventHeader />
       <main>
-        <section className="bg-[linear-gradient(140deg,#F4EFE7_0%,#F4EFE7_46%,#E1E9E2_46%,#ECE2D3_100%)]">
+        <section className="bg-[linear-gradient(140deg,#F2EFE6_0%,#F2EFE6_46%,#D8EEF2_46%,#E8D8C4_100%)]">
           <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-end">
               <div className="max-w-4xl">
@@ -61,7 +61,7 @@ export default function VyezdnoeBogosluzheniePage() {
                 </dl>
                 <div className="mt-5 flex flex-col gap-3 sm:flex-row lg:flex-col">
                   <a
-                    className="inline-flex min-h-11 items-center justify-center rounded-md bg-church-accent px-5 text-sm font-medium text-white transition-colors hover:bg-[#203f35] focus:outline-none focus:ring-2 focus:ring-church-accent focus:ring-offset-2 focus:ring-offset-church-surface"
+                    className="inline-flex min-h-11 items-center justify-center rounded-md bg-church-accent px-5 text-sm font-medium text-white transition-colors hover:bg-church-accentHover focus:outline-none focus:ring-2 focus:ring-church-accent focus:ring-offset-2 focus:ring-offset-church-surface"
                     href="#info"
                   >
                     Посмотреть информацию

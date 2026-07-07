@@ -10,14 +10,15 @@ const config: Config = {
     extend: {
       colors: {
         church: {
-          background: "#F4EFE7",
-          surface: "#FFFBF4",
-          surfaceWarm: "#ECE2D3",
-          text: "#1F2933",
-          muted: "#5F6872",
-          border: "#DDD1C0",
-          accent: "#294F43",
-          accentSoft: "#E1E9E2",
+          background: "#F2EFE6",
+          surface: "#FFF8EC",
+          surfaceWarm: "#E8D8C4",
+          text: "#1A2F3A",
+          muted: "#526873",
+          border: "#C9BBA8",
+          accent: "#1C6F8A",
+          accentHover: "#154F64",
+          accentSoft: "#D8EEF2",
         },
       },
       fontFamily: {
