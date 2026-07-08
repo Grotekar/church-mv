@@ -127,14 +127,6 @@ export default function Home() {
                   <ValueText value={churchContent.service.time} />
                 </dd>
               </div>
-              <div>
-                <dt className="text-sm uppercase tracking-[0.08em] text-church-muted">
-                  Адрес
-                </dt>
-                <dd className="mt-2 text-xl font-semibold text-church-text">
-                  <ValueText value={churchContent.address.text} />
-                </dd>
-              </div>
             </dl>
           </div>
         </Section>
