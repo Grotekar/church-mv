@@ -1,8 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { camp2026Content as eventContent } from "@/content/events/camp2026";
 import { churchIdentity } from "@/content/shared/churchIdentity";
 import { isPlaceholder } from "@/lib/placeholders";
+import { withBasePath } from "@/lib/paths";
 import { CampGalleryCarousel } from "./CampGalleryCarousel";
 import styles from "./camp2026.module.css";
 
@@ -25,18 +27,39 @@ export const metadata: Metadata = {
 export default function Camp2026Page() {
   const hasDiskUrl = !isPlaceholder(eventContent.actions.diskUrl);
   const currentYear = new Date().getFullYear();
+  const heroStyle = {
+    "--camp-hero-image": `url("${withBasePath(eventContent.photos[0].src)}")`,
+  } as CSSProperties;
 
   return (
-    <div className={styles.page}>
+    <div className={styles.page} style={heroStyle}>
       <header className={styles.hero}>
         <nav className={styles.topbar} aria-label="Навигация страницы">
           <a className={styles.brand} href="#top" aria-label="В начало страницы">
             <span className={styles.brandMark} />
             <span className={styles.brandText}>{eventContent.shortTitle}</span>
           </a>
-          <Link className={styles.topLink} href="/">
-            Вернуться на сайт церкви
-          </Link>
+          <div className={styles.topbarActions}>
+            {hasDiskUrl ? (
+              <a
+                className={styles.topDiskLink}
+                href={eventContent.actions.diskUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {eventContent.actions.diskPreview}
+              </a>
+            ) : (
+              <span
+                className={`${styles.topDiskLink} ${styles.topDiskLinkDisabled}`}
+              >
+                {eventContent.actions.diskPreview}
+              </span>
+            )}
+            <Link className={styles.topLink} href="/">
+              Вернуться на сайт церкви
+            </Link>
+          </div>
         </nav>
 
         <section className={styles.heroContent} id="top">

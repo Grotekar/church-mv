@@ -7,6 +7,7 @@ import { Hero } from "@/components/Hero";
 import { Section } from "@/components/Section";
 import { churchContent } from "@/content/church";
 import { displayValue, isPlaceholder } from "@/lib/placeholders";
+import { withBasePath } from "@/lib/paths";
 
 export default function Home() {
   const hasDonationLink = !isPlaceholder(churchContent.donations.link);
@@ -258,7 +259,7 @@ export default function Home() {
                     alt={churchContent.donations.qrAlt}
                     className="h-full w-full object-contain"
                     height={176}
-                    src={churchContent.donations.qrSrc}
+                    src={withBasePath(churchContent.donations.qrSrc)}
                     width={176}
                   />
                 </div>

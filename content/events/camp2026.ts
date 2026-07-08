@@ -2,7 +2,7 @@ export const camp2026Content = {
   slug: "camp2026",
   title: "Выездная смена, которую хочется сохранить",
   shortTitle: "Смена 2026",
-  subtitle: "5 дней рядом, честно и по-настоящему",
+  subtitle: "5 дней рядом",
   seo: {
     title: "Выездная смена 2026 | Фотографии",
     description:
@@ -13,6 +13,7 @@ export const camp2026Content = {
   actions: {
     gallery: "Смотреть избранное",
     disk: "Скачать все фотографии",
+    diskPreview: "Фото на Яндекс Диске",
     // TODO: заменить на реальную ссылку Яндекс Диска, если архив фотографий готов к публикации.
     diskUrl: "PLACEHOLDER: https://disk.yandex.ru/...",
   },

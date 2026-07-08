@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { churchContent } from "@/content/church";
 import { isPlaceholder } from "@/lib/placeholders";
+import { withBasePath } from "@/lib/paths";
 
 const baseNavigation = [
   { label: "О церкви", href: "#about" },
@@ -28,7 +29,7 @@ export function Header() {
               alt={churchContent.logoAlt}
               className="h-8 w-8 shrink-0 object-contain"
               height={32}
-              src={churchContent.logoSrc}
+              src={withBasePath(churchContent.logoSrc)}
               width={32}
             />
           ) : null}

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef } from "react";
+import { withBasePath } from "@/lib/paths";
 import styles from "./camp2026.module.css";
 
 type CampPhoto = {
@@ -59,7 +60,7 @@ export function CampGalleryCarousel({ photos }: CampGalleryCarouselProps) {
             <Image
               alt={photo.alt}
               height={photo.height}
-              src={photo.src}
+              src={withBasePath(photo.src)}
               width={photo.width}
             />
             <figcaption className={styles.caption}>{photo.caption}</figcaption>

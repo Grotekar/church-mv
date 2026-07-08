@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Section } from "@/components/Section";
+import { withBasePath } from "@/lib/paths";
 
 type GalleryImage = {
   alt: string;
@@ -64,7 +65,7 @@ function GalleryFigure({
           className="h-full w-full object-cover"
           height={image.height}
           priority={priority}
-          src={image.src}
+          src={withBasePath(image.src)}
           width={image.width}
         />
       </div>

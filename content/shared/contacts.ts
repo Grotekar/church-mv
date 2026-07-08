@@ -11,14 +11,14 @@ export const churchContacts = {
     // TODO: заменить на реальный публичный телефон церкви.
     label: "Телефон",
     // TODO: заменить на реальный публичный телефон церкви.
-    value: "PLACEHOLDER: +7 (___) ___-__-__",
+    value: "+7 (999) 999-99-99",
     // TODO: заменить на tel-ссылку с тем же номером в международном формате, например tel:+79000000000.
     href: "PLACEHOLDER: tel:+79000000000",
   },
   email: {
     label: "Email",
     // TODO: заменить на реальный публичный email церкви, если он используется.
-    value: "PLACEHOLDER: email@example.com",
+    value: "email@examplet.com",
     // TODO: заменить на mailto-ссылку с тем же адресом, например mailto:info@example.com.
     href: "PLACEHOLDER: mailto:email@example.com",
   },
