@@ -9,6 +9,13 @@ export function Footer() {
   const hasPhone =
     !isPlaceholder(churchContacts.phone.value) &&
     !isPlaceholder(churchContacts.phone.href);
+  const legal = churchIdentity.legal;
+  const legalItems = [
+    { label: "ИНН/КПП", value: legal.taxRegistration },
+    { label: "ОГРН", value: legal.ogrn },
+    { label: "Регистрация", value: legal.registrationCertificate },
+  ].filter((item) => !isPlaceholder(item.value));
+  const hasLegal = !isPlaceholder(legal.fullName) || legalItems.length > 0;
 
   return (
     <footer className="bg-church-text text-white">
@@ -26,6 +33,21 @@ export function Footer() {
           ) : null}
           <p>© {currentYear} {churchIdentity.name}</p>
         </div>
+        {hasLegal ? (
+          <div className="border-t border-white/10 pt-5 text-xs leading-6 text-white/60 md:col-span-2">
+            {!isPlaceholder(legal.fullName) ? <p>{legal.fullName}</p> : null}
+            {legalItems.length > 0 ? (
+              <dl className="mt-2 flex flex-col gap-x-5 gap-y-1 sm:flex-row sm:flex-wrap">
+                {legalItems.map((item) => (
+                  <div key={item.label}>
+                    <dt className="inline">{item.label}: </dt>
+                    <dd className="inline">{item.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </footer>
   );

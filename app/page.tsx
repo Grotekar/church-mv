@@ -20,6 +20,9 @@ export default function Home() {
     churchContent.contacts.whatsapp,
     churchContent.contacts.vk,
   ];
+  const realContactChannels = contactChannels.filter(hasRealLink);
+  const hasRealEmail = hasRealContactValue(churchContent.contacts.email);
+  const hasContactLinks = hasRealEmail || realContactChannels.length > 0;
   const structuredData: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Church",
@@ -177,44 +180,31 @@ export default function Home() {
         </Section>
 
         <Section id="contacts" title="Контакты">
-          <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(240px,340px)]">
-            <div>
+          <div className="grid gap-7 md:grid-cols-[minmax(0,0.95fr)_minmax(260px,360px)] md:items-start">
+            <div className="max-w-2xl">
               <p className="max-w-2xl text-base leading-8 text-church-muted sm:text-lg">
                 {churchContent.contacts.description}
               </p>
-            </div>
-            <dl className="space-y-5 border-l-2 border-church-border pl-5">
-              <ContactPerson />
-              <div>
-                <dt className="text-sm uppercase tracking-[0.08em] text-church-muted">
-                  {churchContent.contacts.phone.label}
-                </dt>
-                <dd className="mt-2 text-xl font-semibold text-church-text">
-                  <ContactValue contact={churchContent.contacts.phone} />
-                </dd>
-              </div>
-              <div>
-                <dt className="text-sm uppercase tracking-[0.08em] text-church-muted">
-                  {churchContent.contacts.email.label}
-                </dt>
-                <dd className="mt-2 text-xl font-semibold text-church-text">
-                  <ContactValue contact={churchContent.contacts.email} />
-                </dd>
-              </div>
-              <div>
-                <dt className="text-sm uppercase tracking-[0.08em] text-church-muted">
-                  Мессенджеры
-                </dt>
-                <dd className="mt-2 flex flex-col gap-2 text-xl font-semibold text-church-text">
-                  {contactChannels.map((messenger) => (
-                    <ContactLink
-                      href={messenger.href}
-                      key={messenger.label}
-                      label={messenger.label}
+              {hasContactLinks ? (
+                <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-base font-medium">
+                  {hasRealEmail ? (
+                    <ContactInlineLink
+                      href={churchContent.contacts.email.href}
+                      label={churchContent.contacts.email.value}
+                    />
+                  ) : null}
+                  {realContactChannels.map((channel) => (
+                    <ContactInlineLink
+                      href={channel.href}
+                      key={channel.label}
+                      label={channel.label}
                     />
                   ))}
-                </dd>
-              </div>
+                </div>
+              ) : null}
+            </div>
+            <dl className="border-l-2 border-church-accent/70 pl-5">
+              <ContactPerson contactPhone={churchContent.contacts.phone} />
             </dl>
           </div>
         </Section>
@@ -277,11 +267,20 @@ export default function Home() {
   );
 }
 
-function ContactPerson() {
+function ContactPerson({
+  contactPhone,
+}: {
+  contactPhone: {
+    href: string;
+    label: string;
+    value: string;
+  };
+}) {
   const person = churchContent.contacts.person;
   const hasName = !isPlaceholder(person.name);
   const hasRole = !isPlaceholder(person.role);
-  const shouldRender = hasName || hasRole;
+  const hasPhone = hasRealContactValue(contactPhone);
+  const shouldRender = hasName || hasRole || hasPhone;
 
   if (!shouldRender) {
     return null;
@@ -298,6 +297,19 @@ function ContactPerson() {
           <p className="text-base font-normal leading-7 text-church-muted">
             {person.role}
           </p>
+        ) : null}
+        {hasPhone ? (
+          <div className="pt-2">
+            <p className="text-sm uppercase tracking-[0.08em] text-church-muted">
+              {contactPhone.label}
+            </p>
+            <a
+              className="mt-1 block text-church-accent underline underline-offset-4 transition-colors hover:text-church-text focus:outline-none focus:ring-2 focus:ring-church-accent focus:ring-offset-4 focus:ring-offset-church-background"
+              href={contactPhone.href}
+            >
+              {contactPhone.value}
+            </a>
+          </div>
         ) : null}
       </dd>
     </div>
@@ -324,16 +336,6 @@ type ContactValueProps = {
   };
 };
 
-function ContactValue({ contact }: ContactValueProps) {
-  if (isPlaceholder(contact.value) || isPlaceholder(contact.href)) {
-    return (
-      <span className="text-church-muted">{displayValue(contact.value)}</span>
-    );
-  }
-
-  return <a href={contact.href}>{contact.value}</a>;
-}
-
 function MapAction({ href, label }: MapActionProps) {
   if (isPlaceholder(href)) {
     return (
@@ -355,19 +357,29 @@ function MapAction({ href, label }: MapActionProps) {
   );
 }
 
-function ContactLink({ href, label }: MapActionProps) {
+function ContactInlineLink({ href, label }: MapActionProps) {
   if (isPlaceholder(href)) {
-    return <span className="text-church-muted">{label}: ссылка будет добавлена</span>;
+    return null;
   }
+
+  const isMailLink = href.startsWith("mailto:");
 
   return (
     <a
       className="text-church-accent underline underline-offset-4 transition-colors hover:text-church-text focus:outline-none focus:ring-2 focus:ring-church-accent focus:ring-offset-4 focus:ring-offset-church-background"
       href={href}
-      rel="noopener noreferrer"
-      target="_blank"
+      rel={isMailLink ? undefined : "noopener noreferrer"}
+      target={isMailLink ? undefined : "_blank"}
     >
       {label}
     </a>
   );
+}
+
+function hasRealContactValue(contact: ContactValueProps["contact"]) {
+  return !isPlaceholder(contact.value) && !isPlaceholder(contact.href);
+}
+
+function hasRealLink(contact: MapActionProps) {
+  return !isPlaceholder(contact.href);
 }

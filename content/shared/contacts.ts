@@ -13,24 +13,24 @@ export const churchContacts = {
     // TODO: заменить на реальный публичный телефон церкви.
     value: "+7 (999) 999-99-99",
     // TODO: заменить на tel-ссылку с тем же номером в международном формате, например tel:+79000000000.
-    href: "PLACEHOLDER: tel:+79000000000",
+    href: "tel:+79000000000",
   },
   email: {
     label: "Email",
     // TODO: заменить на реальный публичный email церкви, если он используется.
     value: "email@examplet.com",
     // TODO: заменить на mailto-ссылку с тем же адресом, например mailto:info@example.com.
-    href: "PLACEHOLDER: mailto:email@example.com",
+    href: "mailto:email@exadmple.com",
   },
   telegram: {
     label: "Telegram",
     // TODO: заменить на реальную ссылку Telegram, если канал связи используется.
-    href: "PLACEHOLDER: https://t.me/...",
+    href: "https://t.me/...",
   },
   whatsapp: {
     label: "WhatsApp",
     // TODO: заменить на реальную ссылку WhatsApp, если канал связи используется.
-    href: "PLACEHOLDER: https://wa.me/...",
+    href: "https://wa.me/...",
   },
   vk: {
     label: "VK",
