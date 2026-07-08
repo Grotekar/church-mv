@@ -5,6 +5,7 @@ export function Hero() {
   const mapHref = churchContent.address.mapLinks.find(
     (link) => !isPlaceholder(link.href),
   )?.href;
+  const scheduleSummary = getScheduleSummary(churchContent.weeklySchedule);
 
   return (
     <section className="bg-[linear-gradient(135deg,#F2EFE6_0%,#F2EFE6_52%,#D8EEF2_52%,#D8EEF2_100%)]">
@@ -29,7 +30,7 @@ export function Hero() {
                   Богослужение
                 </dt>
                 <dd className="mt-2 text-xl font-semibold text-church-text">
-                  <ValueText value={churchContent.service.time} />
+                  <ValueText value={scheduleSummary} />
                 </dd>
               </div>
               <div className="max-w-sm">
@@ -76,4 +77,19 @@ function ValueText({ value }: { value: string }) {
   }
 
   return value;
+}
+
+function getScheduleSummary(
+  schedule: typeof churchContent.weeklySchedule,
+): string {
+  const firstDay = schedule[0];
+  const firstItem = firstDay?.items[0];
+
+  if (!firstDay || !firstItem) {
+    return "";
+  }
+
+  return [firstDay.day, firstItem.time, firstItem.title]
+    .filter(Boolean)
+    .join(" · ");
 }

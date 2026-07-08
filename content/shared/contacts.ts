@@ -18,7 +18,7 @@ export const churchContacts = {
   email: {
     label: "Email",
     // TODO: заменить на реальный публичный email церкви, если он используется.
-    value: "cerkovboziahristianeveryevange@gmail.com",
+    value: "EMAIL",
     // TODO: заменить на mailto-ссылку с тем же адресом, например mailto:info@example.com.
     href: "mailto:cerkovboziahristianeveryevange@gmail.com",
   },

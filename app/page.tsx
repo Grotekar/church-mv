@@ -109,25 +109,10 @@ export default function Home() {
         </Section>
 
         <Section id="services" title="Богослужения">
-          <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(240px,340px)]">
-            <div className="max-w-2xl">
-              <h3 className="text-xl font-semibold text-church-text">
-                {churchContent.service.title}
-              </h3>
-              <p className="mt-4 text-base leading-8 text-church-muted sm:text-lg">
-                {churchContent.service.description}
-              </p>
-            </div>
-            <dl className="space-y-5 border-l-2 border-church-accent/70 pl-5">
-              <div>
-                <dt className="text-sm uppercase tracking-[0.08em] text-church-muted">
-                  Время
-                </dt>
-                <dd className="mt-2 text-xl font-semibold text-church-text">
-                  <ValueText value={churchContent.service.time} />
-                </dd>
-              </div>
-            </dl>
+          <div className="max-w-4xl space-y-8">
+            {churchContent.weeklySchedule.map((scheduleDay) => (
+              <ScheduleDayBlock key={scheduleDay.day} scheduleDay={scheduleDay} />
+            ))}
           </div>
         </Section>
 
@@ -235,7 +220,7 @@ export default function Home() {
               </p>
             </div>
             {hasDonationQr ? (
-              <div className="hidden md:block">
+              <div className="hidden md:block text-center">
                 <div className="flex aspect-square items-center justify-center bg-church-background/45 p-4 text-center text-sm leading-6 text-church-muted">
                   <Image
                     alt={churchContent.donations.qrAlt}
@@ -313,6 +298,71 @@ function ContactPerson({
         ) : null}
       </dd>
     </div>
+  );
+}
+
+type ScheduleDay = (typeof churchContent.weeklySchedule)[number];
+type ScheduleItem = ScheduleDay["items"][number];
+
+function ScheduleDayBlock({ scheduleDay }: { scheduleDay: ScheduleDay }) {
+  return (
+    <article className="border-l-2 border-church-accent/40 pl-5 sm:pl-6">
+      <h3 className="text-xl font-semibold text-church-text">
+        {scheduleDay.day}
+      </h3>
+      <ul className="mt-4 space-y-5">
+        {scheduleDay.items.map((item) => (
+          <ScheduleListItem item={item} key={`${item.time ?? ""}-${item.title}`} />
+        ))}
+      </ul>
+      {scheduleDay.note ? (
+        <p className="mt-5 max-w-2xl text-sm leading-6 text-church-muted">
+          {scheduleDay.note}
+        </p>
+      ) : null}
+    </article>
+  );
+}
+
+function ScheduleListItem({ item }: { item: ScheduleItem }) {
+  return (
+    <li className="grid gap-2 sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-5">
+      <p className="text-base font-semibold text-church-accent">
+        {item.time ?? ""}
+      </p>
+      <div>
+        <p className="text-lg font-semibold text-church-text">{item.title}</p>
+        {item.description ? (
+          <p className="mt-2 text-base leading-7 text-church-muted">
+            {item.description}
+          </p>
+        ) : null}
+        {item.link ? <ScheduleInlineLink link={item.link} /> : null}
+      </div>
+    </li>
+  );
+}
+
+function ScheduleInlineLink({ link }: { link: NonNullable<ScheduleItem["link"]> }) {
+  if (isPlaceholder(link.href)) {
+    return (
+      <p className="mt-2 text-base leading-7 text-church-muted">
+        {[link.prefix, link.label, link.suffix].filter(Boolean).join(" ")}
+      </p>
+    );
+  }
+
+  return (
+    <p className="mt-2 text-base leading-7 text-church-muted">
+      {link.prefix ? `${link.prefix} ` : null}
+      <a
+        className="font-medium text-church-accent underline underline-offset-4 transition-colors hover:text-church-text focus:outline-none focus:ring-2 focus:ring-church-accent focus:ring-offset-4 focus:ring-offset-church-background"
+        href={link.href}
+      >
+        {link.label}
+      </a>
+      {link.suffix ?? null}
+    </p>
   );
 }
 
