@@ -6,6 +6,9 @@ export function isPlaceholder(value: string | undefined) {
   return value.includes("PLACEHOLDER") || value.includes("example.com");
 }
 
-export function displayValue(value: string, fallback = "Будет добавлено") {
+export function displayValue(
+  value: string | undefined,
+  fallback = "Будет добавлено",
+) {
   return isPlaceholder(value) ? fallback : value;
 }

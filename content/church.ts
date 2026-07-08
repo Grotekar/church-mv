@@ -1,11 +1,9 @@
+import { churchContacts } from "@/content/shared/contacts";
+import { churchDonations } from "@/content/shared/donations";
+import { churchIdentity } from "@/content/shared/churchIdentity";
+
 export const churchContent = {
-  // TODO: перед публикацией заменить на реальный домен сайта.
-  siteUrl: "https://example.com",
-  name: "Церковь Божия города Минеральные Воды",
-  identity: "Христиане веры евангельской",
-  // TODO: положить логотип в public/ и заменить путь, например /logo.svg. Если логотипа нет, оставить PLACEHOLDER.
-  logoSrc: "/logo.png",
-  logoAlt: "Логотип Церкви Божией города Минеральные Воды",
+  ...churchIdentity,
   heroText:
     "Мы собираемся по воскресеньям для богослужения и молитвы.",
   seo: {
@@ -52,52 +50,38 @@ export const churchContent = {
     // TODO: заменить на реальный ориентир или оставить пустую строку, если ориентир не нужен.
     note: "Старый переезд, район \"Нахаловка\"",
     // TODO: заменить ссылки на реальные страницы церкви или адреса в картах.
-    mapLinks: [
-      {
-        label: "Открыть в Яндекс.Картах",
-        href: "https://yandex.ru/maps/-/CTuUj0~7",
-      },
-      {
-        label: "Открыть в 2ГИС",
-        href: "https://go.2gis.com/0YWxt",
-      },
-    ],
+    mapLinks: [churchContacts.maps.yandex, churchContacts.maps.gis2],
   },
   contacts: {
-    description:
-      "По вопросам о богослужениях, служениях или встречах можно связаться с церковью указанным способом.",
-    phone: {
-      // TODO: заменить на реальный публичный телефон церкви.
-      label: "PLACEHOLDER: +7 (___) ___-__-__",
-      // TODO: заменить на tel-ссылку с тем же номером в международном формате, например tel:+79000000000.
-      href: "PLACEHOLDER: tel:+79000000000",
-    },
-    messengers: [
-      {
-        label: "Telegram",
-        // TODO: заменить на реальную ссылку Telegram, если канал связи используется.
-        href: "PLACEHOLDER: https://t.me/...",
-      },
-      {
-        label: "WhatsApp",
-        // TODO: заменить на реальную ссылку WhatsApp, если канал связи используется.
-        href: "PLACEHOLDER: https://wa.me/...",
-      },
-      {
-        label: "VK",
-        // TODO: заменить на реальную ссылку VK, если страница используется.
-        href: "https://vk.com/church_mv",
-      },
-    ],
+    ...churchContacts,
   },
   donations: {
     description:
       "Если у вас лежит на сердце оказать поддержку служениям церкви, то будем признательны вашему пожертвованию.",
-    // TODO: заменить на реальную ссылку для пожертвований на мобильных устройствах.
-    link: "https://www.sberbank.com/sms/mybill?cs=1847753366852",
-    // TODO: положить QR-код в public/ и заменить путь, например /donation-qr.png.
-    qrSrc: "/donation-qr.png",
-    qrAlt: "QR-код для пожертвований",
+    ...churchDonations,
+  },
+  gallery: {
+    enabled: false,
+    title: "Фотографии",
+    description:
+      "Фотографии церковной жизни можно добавить после согласования реальных материалов для публикации.",
+    // TODO: добавить только реальные фотографии церкви или мероприятий. Если фотографий нет, оставить массив пустым.
+    images: [] as Array<{
+      alt: string;
+      caption?: string;
+      height: number;
+      src: string;
+      width: number;
+    }>,
+  },
+  events: {
+    // TODO: указать ближайшее актуальное мероприятие только при наличии подтверждённой даты и краткого описания.
+    featured: null as null | {
+      title: string;
+      date: string;
+      description: string;
+      href: string;
+    },
   },
   footerNote: "© Церковь Божия города Минеральные Воды",
 } as const;

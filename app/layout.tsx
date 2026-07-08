@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { churchContent } from "@/content/church";
+import { churchIdentity } from "@/content/shared/churchIdentity";
 import { isPlaceholder } from "@/lib/placeholders";
 
 export const metadata: Metadata = {
-  ...(isPlaceholder(churchContent.siteUrl)
+  ...(isPlaceholder(churchIdentity.siteUrl)
     ? {}
-    : { metadataBase: new URL(churchContent.siteUrl) }),
+    : { metadataBase: new URL(churchIdentity.siteUrl) }),
   title: churchContent.seo.title,
   description: churchContent.seo.description,
   openGraph: {
@@ -14,8 +15,8 @@ export const metadata: Metadata = {
     description: churchContent.seo.description,
     type: "website",
     locale: "ru_RU",
-    ...(isPlaceholder(churchContent.siteUrl) ? {} : { url: churchContent.siteUrl }),
-    siteName: churchContent.name,
+    ...(isPlaceholder(churchIdentity.siteUrl) ? {} : { url: churchIdentity.siteUrl }),
+    siteName: churchIdentity.name,
   },
   robots: {
     index: true,
