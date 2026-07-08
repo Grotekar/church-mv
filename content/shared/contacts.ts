@@ -18,19 +18,19 @@ export const churchContacts = {
   email: {
     label: "Email",
     // TODO: заменить на реальный публичный email церкви, если он используется.
-    value: "email@examplet.com",
+    value: "cerkovboziahristianeveryevange@gmail.com",
     // TODO: заменить на mailto-ссылку с тем же адресом, например mailto:info@example.com.
-    href: "mailto:email@exadmple.com",
+    href: "mailto:cerkovboziahristianeveryevange@gmail.com",
   },
   telegram: {
     label: "Telegram",
     // TODO: заменить на реальную ссылку Telegram, если канал связи используется.
-    href: "https://t.me/...",
+    href: "PLACEHOLDER: https://t.me/...",
   },
   whatsapp: {
     label: "WhatsApp",
     // TODO: заменить на реальную ссылку WhatsApp, если канал связи используется.
-    href: "https://wa.me/...",
+    href: "PLACEHOLDER: https://wa.me/...",
   },
   vk: {
     label: "VK",
