@@ -48,7 +48,10 @@ export const churchContent = {
           title: "Второе богослужение",
         },
       ],
-      note: "Для детей во время воскресных богослужений проходит воскресная школа.",
+      note: {
+        title: "Для детей",
+        text: "Во время воскресных богослужений проходит воскресная школа.",
+      },
     },
     {
       day: "Пятница",
@@ -73,7 +76,7 @@ export const churchContent = {
       items: [
         {
           title: "Домашние группы",
-          description: "Домашние группы проходят в течение недели.",
+          description: "Домашние группы проходят в течение недели в разных районах города.",
           link: {
             prefix: "Если вы хотите присоединиться,",
             label: "свяжитесь с нами",
@@ -96,7 +99,10 @@ export const churchContent = {
         suffix?: string;
       };
     }>;
-    note?: string;
+    note?: {
+      title: string;
+      text: string;
+    };
   }>,
   // TODO: добавить только реально существующие служения. Если служений для публикации нет, оставить массив пустым.
   ministries: [] as Array<{ title: string; description: string }>,

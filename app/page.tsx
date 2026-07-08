@@ -110,8 +110,12 @@ export default function Home() {
 
         <Section id="services" title="Богослужения">
           <div className="max-w-4xl space-y-8">
-            {churchContent.weeklySchedule.map((scheduleDay) => (
-              <ScheduleDayBlock key={scheduleDay.day} scheduleDay={scheduleDay} />
+            {churchContent.weeklySchedule.map((scheduleDay, index) => (
+              <ScheduleDayBlock
+                isPrimary={index === 0}
+                key={scheduleDay.day}
+                scheduleDay={scheduleDay}
+              />
             ))}
           </div>
         </Section>
@@ -304,21 +308,29 @@ function ContactPerson({
 type ScheduleDay = (typeof churchContent.weeklySchedule)[number];
 type ScheduleItem = ScheduleDay["items"][number];
 
-function ScheduleDayBlock({ scheduleDay }: { scheduleDay: ScheduleDay }) {
+function ScheduleDayBlock({
+  isPrimary = false,
+  scheduleDay,
+}: {
+  isPrimary?: boolean;
+  scheduleDay: ScheduleDay;
+}) {
   return (
-    <article className="border-l-2 border-church-accent/40 pl-5 sm:pl-6">
+    <article
+      className={`border-l-2 border-church-accent/40 pl-5 sm:pl-6 ${
+        isPrimary ? "pb-2 sm:pb-3" : ""
+      }`}
+    >
       <h3 className="text-xl font-semibold text-church-text">
         {scheduleDay.day}
       </h3>
-      <ul className="mt-4 space-y-5">
+      <ul className={isPrimary ? "mt-5 space-y-6" : "mt-4 space-y-5"}>
         {scheduleDay.items.map((item) => (
           <ScheduleListItem item={item} key={`${item.time ?? ""}-${item.title}`} />
         ))}
       </ul>
       {scheduleDay.note ? (
-        <p className="mt-5 max-w-2xl text-sm leading-6 text-church-muted">
-          {scheduleDay.note}
-        </p>
+        <ScheduleNote note={scheduleDay.note} />
       ) : null}
     </article>
   );
@@ -327,7 +339,7 @@ function ScheduleDayBlock({ scheduleDay }: { scheduleDay: ScheduleDay }) {
 function ScheduleListItem({ item }: { item: ScheduleItem }) {
   return (
     <li className="grid gap-2 sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-5">
-      <p className="text-base font-semibold text-church-accent">
+      <p className="text-sm font-medium text-church-accent sm:text-base">
         {item.time ?? ""}
       </p>
       <div>
@@ -340,6 +352,17 @@ function ScheduleListItem({ item }: { item: ScheduleItem }) {
         {item.link ? <ScheduleInlineLink link={item.link} /> : null}
       </div>
     </li>
+  );
+}
+
+function ScheduleNote({ note }: { note: NonNullable<ScheduleDay["note"]> }) {
+  return (
+    <div className="mt-5 max-w-2xl border-l border-church-accent/40 pl-4">
+      <p className="text-sm font-semibold leading-6 text-church-text">
+        {note.title}
+      </p>
+      <p className="mt-1 text-sm leading-6 text-church-muted">{note.text}</p>
+    </div>
   );
 }
 
