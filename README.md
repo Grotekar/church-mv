@@ -12,13 +12,27 @@
 
 GitHub Pages используется только как временный preview-деплой для ревью.
 
-Локальная разработка и обычный shared hosting используют стандартные пути:
+Обычный деплой на shared hosting не меняется: локальная сборка без переменных окружения использует стандартные пути и создаёт статический сайт в `out/`.
 
 ```bash
 npm run build
 ```
 
-Для GitHub Pages project page workflow устанавливает:
+### Как настроить GitHub Pages
+
+1. Откройте репозиторий проекта на GitHub.
+2. Перейдите в `Settings` → `Pages`.
+3. В разделе `Build and deployment` выберите источник `GitHub Actions`.
+4. Сохраните настройку, если GitHub попросит подтверждение.
+5. Перейдите во вкладку `Actions`.
+6. Выберите workflow `Deploy GitHub Pages preview`.
+7. Нажмите `Run workflow`.
+8. Дождитесь завершения jobs `Build static site` и `Deploy preview`.
+9. Откройте опубликованную ссылку из блока `Deploy preview` или из `Settings` → `Pages`.
+
+### Как работает preview-сборка
+
+Для GitHub Pages project page workflow устанавливает переменные:
 
 ```bash
 GITHUB_PAGES=true
@@ -27,4 +41,22 @@ GITHUB_PAGES_BASE_PATH=/<repository-name>
 
 Это включает `basePath` и `assetPrefix` только для preview-сборки. Статический сайт загружается из `out/`.
 
-В GitHub нужно включить Pages с источником GitHub Actions, затем запустить workflow `Deploy GitHub Pages preview`.
+Пример URL для project page:
+
+```text
+https://<github-username>.github.io/<repository-name>/
+```
+
+Если имя репозитория изменится, workflow автоматически использует новое имя репозитория как `basePath`.
+
+### Перед запуском preview
+
+1. Убедитесь, что изменения отправлены в ветку, из которой запускается workflow.
+2. Проверьте локально:
+
+```bash
+npm run lint
+npm run build
+```
+
+3. Помните, что GitHub Pages в этом проекте используется только для ревью, не как финальный production hosting.
