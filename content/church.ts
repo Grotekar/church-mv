@@ -50,7 +50,7 @@ export const churchContent = {
     // TODO: заменить на реальный ориентир или оставить пустую строку, если ориентир не нужен.
     note: "Старый переезд, район \"Нахаловка\"",
     // TODO: заменить ссылки на реальные страницы церкви или адреса в картах.
-    mapLinks: [churchContacts.maps.yandex, churchContacts.maps.gis2],
+    mapLinks: [churchContacts.maps.yandex, churchContacts.maps.gis2, churchContacts.maps.google],
   },
   contacts: {
     ...churchContacts,

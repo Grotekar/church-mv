@@ -46,5 +46,9 @@ export const churchContacts = {
       label: "Открыть в 2ГИС",
       href: "https://go.2gis.com/0YWxt",
     },
+    google: {
+      label: "Открыть в Google Картах",
+      href: "https://maps.app.goo.gl/dYo8tUwjwUKoZ8d98",
+    },
   },
 } as const;
