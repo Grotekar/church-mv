@@ -82,14 +82,26 @@ function ValueText({ value }: { value: string }) {
 function getScheduleSummary(
   schedule: typeof churchContent.weeklySchedule,
 ): string {
-  const firstDay = schedule[0];
-  const firstItem = firstDay?.items[0];
+  const firstDayWithTimes = schedule
+    .map((day) => ({
+      day: day.day,
+      times: day.items
+        .map((item) => item.time)
+        .filter((time): time is string => Boolean(time)),
+    }))
+    .find((day) => day.times.length > 0);
 
-  if (!firstDay || !firstItem) {
+  if (!firstDayWithTimes) {
     return "";
   }
 
-  return [firstDay.day, firstItem.time, firstItem.title]
-    .filter(Boolean)
-    .join(" · ");
+  return `${firstDayWithTimes.day} · ${formatTimes(firstDayWithTimes.times)}`;
+}
+
+function formatTimes(times: string[]): string {
+  if (times.length <= 1) {
+    return times[0] ?? "";
+  }
+
+  return `${times.slice(0, -1).join(", ")} и ${times[times.length - 1]}`;
 }
