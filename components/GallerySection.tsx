@@ -2,32 +2,36 @@ import Image from "next/image";
 import { Section } from "@/components/Section";
 import { withBasePath } from "@/lib/paths";
 
-type GalleryImage = {
+type GalleryPhoto = {
   alt: string;
-  caption?: string;
-  height: number;
-  src: string;
-  width: number;
+  category?: string;
+  featured?: boolean;
+  image: {
+    height: number;
+    src: string;
+    width: number;
+  };
+  title: string;
 };
 
 type GallerySectionProps = {
   description?: string;
   id?: string;
-  images: readonly GalleryImage[];
+  photos: readonly GalleryPhoto[];
   title: string;
 };
 
 export function GallerySection({
   description,
   id = "gallery",
-  images,
+  photos,
   title,
 }: GallerySectionProps) {
-  if (images.length === 0) {
+  if (photos.length === 0) {
     return null;
   }
 
-  const [featuredImage, ...secondaryImages] = images;
+  const [featuredPhoto, ...secondaryPhotos] = photos;
 
   return (
     <Section id={id} title={title}>
@@ -37,11 +41,11 @@ export function GallerySection({
         </p>
       ) : null}
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)]">
-        <GalleryFigure image={featuredImage} priority />
-        {secondaryImages.length > 0 ? (
+        <GalleryFigure photo={featuredPhoto} priority />
+        {secondaryPhotos.length > 0 ? (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-            {secondaryImages.slice(0, 3).map((image) => (
-              <GalleryFigure image={image} key={image.src} />
+            {secondaryPhotos.slice(0, 3).map((photo) => (
+              <GalleryFigure photo={photo} key={photo.image.src} />
             ))}
           </div>
         ) : null}
@@ -51,27 +55,27 @@ export function GallerySection({
 }
 
 function GalleryFigure({
-  image,
+  photo,
   priority = false,
 }: {
-  image: GalleryImage;
+  photo: GalleryPhoto;
   priority?: boolean;
 }) {
   return (
     <figure>
       <div className="overflow-hidden rounded-md bg-church-surfaceWarm/50">
         <Image
-          alt={image.alt}
+          alt={photo.alt}
           className="h-full w-full object-cover"
-          height={image.height}
+          height={photo.image.height}
           priority={priority}
-          src={withBasePath(image.src)}
-          width={image.width}
+          src={withBasePath(photo.image.src)}
+          width={photo.image.width}
         />
       </div>
-      {image.caption ? (
+      {photo.title ? (
         <figcaption className="mt-3 text-sm leading-6 text-church-muted">
-          {image.caption}
+          {photo.title}
         </figcaption>
       ) : null}
     </figure>

@@ -13,7 +13,7 @@ export default function Home() {
   const hasDonationLink = !isPlaceholder(churchContent.donations.link);
   const hasDonationQr = !isPlaceholder(churchContent.donations.qrSrc);
   const hasGallery =
-    churchContent.gallery.enabled && churchContent.gallery.images.length > 0;
+    churchContent.gallery.enabled && churchContent.gallery.photos.length > 0;
   const featuredEvent = churchContent.events.featured;
   const contactChannels = [
     churchContent.contacts.telegram,
@@ -91,7 +91,7 @@ export default function Home() {
         {hasGallery ? (
           <GallerySection
             description={churchContent.gallery.description}
-            images={churchContent.gallery.images}
+            photos={churchContent.gallery.photos}
             title={churchContent.gallery.title}
           />
         ) : null}
@@ -338,8 +338,8 @@ function ScheduleDayBlock({
 
 function ScheduleListItem({ item }: { item: ScheduleItem }) {
   return (
-    <li className="grid gap-2 sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-5">
-      <p className="text-sm font-medium text-church-accent sm:text-base">
+    <li className="grid gap-2 sm:grid-cols-[7.25rem_minmax(0,1fr)] sm:gap-5">
+      <p className="whitespace-nowrap text-sm font-medium text-church-accent sm:text-base">
         {item.time ?? ""}
       </p>
       <div>

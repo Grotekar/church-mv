@@ -40,11 +40,11 @@ export const churchContent = {
       day: "Воскресенье",
       items: [
         {
-          time: "10:00",
+          time: "10:00–12:00",
           title: "Первое богослужение",
         },
         {
-          time: "14:00",
+          time: "14:00–16:00",
           title: "Второе богослужение",
         },
       ],
@@ -57,7 +57,7 @@ export const churchContent = {
       day: "Пятница",
       items: [
         {
-          time: "19:00",
+          time: "19:00–21:00",
           title: "Молитвенное служение",
         },
       ],
@@ -66,7 +66,7 @@ export const churchContent = {
       day: "Суббота",
       items: [
         {
-          time: "12:00",
+          time: "12:00–14:00",
           title: "Кормление нуждающихся",
         },
       ],
@@ -76,7 +76,7 @@ export const churchContent = {
       items: [
         {
           title: "Домашние группы",
-          description: "Домашние группы проходят в течение недели в разных районах города.",
+          description: "Проходят в разных районах города.",
           link: {
             prefix: "Если вы хотите присоединиться,",
             label: "свяжитесь с нами",
@@ -126,14 +126,40 @@ export const churchContent = {
     enabled: false,
     title: "Фотографии",
     description:
-      "Фотографии церковной жизни можно добавить после согласования реальных материалов для публикации.",
+      "Церковная жизнь",
     // TODO: добавить только реальные фотографии церкви или мероприятий. Если фотографий нет, оставить массив пустым.
-    images: [] as Array<{
+    photos: [
+      {
+        image: {
+          height: 360,
+          src: "/main/sunday-ministry.webp",
+          width: 360,
+        },
+        alt: "Воскресное богослужение",
+        title: "Воскресное богослужение",
+        category: "Церковная жизнь",
+        featured: true,
+      },
+      {
+        image: {
+          height: 360,
+          src: "/main/revive-dance.jpg",
+          width: 360,
+        },
+        alt: "Танцевальное служение Revive Dance",
+        title: "Танцевальное служение Revive Dance",
+        category: "Служения",
+      },
+    ] as Array<{
+      image: {
+        height: number;
+        src: string;
+        width: number;
+      };
       alt: string;
-      caption?: string;
-      height: number;
-      src: string;
-      width: number;
+      title: string;
+      category?: string;
+      featured?: boolean;
     }>,
   },
   events: {
