@@ -296,6 +296,21 @@
   object-fit: cover;
 }
 
+.photoOpenButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: zoom-in;
+}
+
+.photoOpenButton:focus-visible {
+  outline: 3px solid rgba(184, 67, 53, 0.45);
+  outline-offset: -6px;
+}
+
 .caption {
   padding: 13px 15px 15px;
   font-size: 0.95rem;
@@ -304,6 +319,120 @@
 
 .galleryControl {
   display: none;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(21, 18, 17, 0.82);
+}
+
+.lightboxPanel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  width: min(100%, 940px);
+}
+
+.lightboxFigure {
+  margin: 0;
+}
+
+.lightboxFigure img {
+  width: 100%;
+  max-height: min(78vh, 760px);
+  border-radius: 18px;
+  object-fit: contain;
+  background: rgba(255, 253, 248, 0.08);
+}
+
+.lightboxCaption {
+  margin-top: 10px;
+  color: #fffdf8;
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.lightboxClose,
+.lightboxControl {
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.94);
+  box-shadow: var(--camp-shadow);
+  cursor: pointer;
+}
+
+.lightboxClose:focus-visible,
+.lightboxControl:focus-visible {
+  outline: 3px solid rgba(237, 189, 82, 0.72);
+  outline-offset: 4px;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: -10px;
+  right: -6px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+}
+
+.lightboxClose::before,
+.lightboxClose::after {
+  position: absolute;
+  top: 19px;
+  left: 11px;
+  width: 18px;
+  height: 2px;
+  content: "";
+  background: var(--camp-ink);
+}
+
+.lightboxClose::before {
+  transform: rotate(45deg);
+}
+
+.lightboxClose::after {
+  transform: rotate(-45deg);
+}
+
+.lightboxControl {
+  position: absolute;
+  top: calc(50% - 28px);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+}
+
+.lightboxControl::before {
+  position: absolute;
+  inset: 15px 13px;
+  content: "";
+  border-top: 3px solid var(--camp-ink);
+  border-left: 3px solid var(--camp-ink);
+}
+
+.lightboxPrev {
+  left: 8px;
+}
+
+.lightboxPrev::before {
+  transform: rotate(-45deg);
+}
+
+.lightboxNext {
+  right: 8px;
+}
+
+.lightboxNext::before {
+  transform: rotate(135deg);
 }
 
 .momentsGrid {

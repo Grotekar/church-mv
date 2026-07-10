@@ -1,6 +1,6 @@
 export const churchIdentity = {
   // TODO: перед публикацией заменить на реальный домен сайта.
-  siteUrl: "https://example.com",
+  siteUrl: "https://cogmv.ru",
   name: "Церковь Божия города Минеральные Воды",
   shortName: "Церковь Божия",
   identity: "Христиане веры евангельской",
