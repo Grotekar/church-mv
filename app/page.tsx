@@ -12,6 +12,7 @@ import { withBasePath } from "@/lib/paths";
 export default function Home() {
   const hasDonationLink = !isPlaceholder(churchContent.donations.link);
   const hasDonationQr = !isPlaceholder(churchContent.donations.qrSrc);
+  const hasDonations = churchContent.donations.enabled;
   const hasGallery =
     churchContent.gallery.enabled && churchContent.gallery.photos.length > 0;
   const featuredEvent = churchContent.events.featured;
@@ -190,62 +191,64 @@ export default function Home() {
           </div>
         </Section>
 
-        <Section id="donations" title="Пожертвования" tone="warm">
-          <div
-            className={
-              hasDonationQr
-                ? "grid gap-8 md:grid-cols-[minmax(0,1fr)_220px]"
-                : "max-w-2xl"
-            }
-          >
-            <div>
-              <p className="max-w-2xl text-base leading-8 text-church-muted sm:text-lg">
-                {churchContent.donations.description}
-              </p>
-              <p className="mt-4 max-w-2xl text-sm leading-6 text-church-muted">
-                {churchContent.donations.methodNote}
-              </p>
-              {hasDonationLink ? (
-                <a
-                  className="mt-5 inline-flex min-h-11 items-center justify-center rounded-md bg-church-accent px-5 text-sm font-medium text-white transition-colors hover:bg-church-accentHover focus:outline-none focus:ring-2 focus:ring-church-accent focus:ring-offset-2 focus:ring-offset-church-background md:hidden"
-                  href={churchContent.donations.link}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  Поддержать служение
-                </a>
-              ) : (
-                <p className="mt-5 text-sm text-church-muted md:hidden">
-                  Ссылка для пожертвований будет добавлена.
+        {hasDonations ? (
+          <Section id="donations" title="Пожертвования" tone="warm">
+            <div
+              className={
+                hasDonationQr
+                  ? "grid gap-8 md:grid-cols-[minmax(0,1fr)_220px]"
+                  : "max-w-2xl"
+              }
+            >
+              <div>
+                <p className="max-w-2xl text-base leading-8 text-church-muted sm:text-lg">
+                  {churchContent.donations.description}
                 </p>
-              )}
-              <p className="mt-4 max-w-2xl text-sm leading-6 text-church-muted">
-                {churchContent.donations.purposeNote}
-              </p>
-            </div>
-            {hasDonationQr ? (
-              <div className="hidden md:block text-center">
-                <div className="flex aspect-square items-center justify-center bg-church-background/45 p-4 text-center text-sm leading-6 text-church-muted">
-                  <Image
-                    alt={churchContent.donations.qrAlt}
-                    className="h-full w-full object-contain"
-                    height={176}
-                    src={withBasePath(churchContent.donations.qrSrc)}
-                    width={176}
-                  />
-                </div>
-                <a
+                <p className="mt-4 max-w-2xl text-sm leading-6 text-church-muted">
+                  {churchContent.donations.methodNote}
+                </p>
+                {hasDonationLink ? (
+                  <a
+                    className="mt-5 inline-flex min-h-11 items-center justify-center rounded-md bg-church-accent px-5 text-sm font-medium text-white transition-colors hover:bg-church-accentHover focus:outline-none focus:ring-2 focus:ring-church-accent focus:ring-offset-2 focus:ring-offset-church-background md:hidden"
+                    href={churchContent.donations.link}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Поддержать служение
+                  </a>
+                ) : (
+                  <p className="mt-5 text-sm text-church-muted md:hidden">
+                    Ссылка для пожертвований будет добавлена.
+                  </p>
+                )}
+                <p className="mt-4 max-w-2xl text-sm leading-6 text-church-muted">
+                  {churchContent.donations.purposeNote}
+                </p>
+              </div>
+              {hasDonationQr ? (
+                <div className="hidden md:block text-center">
+                  <div className="flex aspect-square items-center justify-center bg-church-background/45 p-4 text-center text-sm leading-6 text-church-muted">
+                    <Image
+                      alt={churchContent.donations.qrAlt}
+                      className="h-full w-full object-contain"
+                      height={176}
+                      src={withBasePath(churchContent.donations.qrSrc)}
+                      width={176}
+                    />
+                  </div>
+                  <a
                     className="mt-5 inline-flex min-h-11 items-center justify-center rounded-md bg-church-accent px-5 text-sm font-medium text-white transition-colors hover:bg-church-accentHover focus:outline-none focus:ring-2 focus:ring-church-accent focus:ring-offset-2 focus:ring-offset-church-background"
                     href={churchContent.donations.link}
                     rel="noreferrer"
                     target="_blank"
-                >
-                  Поддержать служение
-                </a>
-              </div>
-            ) : null}
-          </div>
-        </Section>
+                  >
+                    Поддержать служение
+                  </a>
+                </div>
+              ) : null}
+            </div>
+          </Section>
+        ) : null}
       </main>
       <Footer />
       <script
