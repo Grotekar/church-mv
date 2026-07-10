@@ -224,6 +224,7 @@ export default function Home() {
                 <p className="mt-4 max-w-2xl text-sm leading-6 text-church-muted">
                   {churchContent.donations.purposeNote}
                 </p>
+                <DonationLegalNotice notice={churchContent.donations.legalNotice} />
               </div>
               {hasDonationQr ? (
                 <div className="hidden md:block text-center">
@@ -398,6 +399,54 @@ function ValueText({ value }: { value: string }) {
   }
 
   return value;
+}
+
+type DonationLegalNoticeProps = {
+  notice: {
+    documents: readonly {
+      downloadName: string;
+      href: string;
+      label: string;
+    }[];
+    prefix: string;
+    separator: string;
+  };
+};
+
+function DonationLegalNotice({ notice }: DonationLegalNoticeProps) {
+  const [firstDocument, secondDocument] = notice.documents;
+
+  if (!firstDocument || !secondDocument) {
+    return null;
+  }
+
+  return (
+    <p className="mt-4 max-w-2xl text-sm leading-6 text-church-muted">
+      {notice.prefix}{" "}
+      <DonationDocumentLink document={firstDocument} /> {notice.separator}{" "}
+      <DonationDocumentLink document={secondDocument} />.
+    </p>
+  );
+}
+
+function DonationDocumentLink({
+  document,
+}: {
+  document: DonationLegalNoticeProps["notice"]["documents"][number];
+}) {
+  if (isPlaceholder(document.href)) {
+    return <span>{document.label}</span>;
+  }
+
+  return (
+    <a
+      className="font-medium text-church-accent underline underline-offset-4 transition-colors hover:text-church-text focus:outline-none focus:ring-2 focus:ring-church-accent focus:ring-offset-4 focus:ring-offset-church-background"
+      download={document.downloadName}
+      href={withBasePath(document.href)}
+    >
+      {document.label}
+    </a>
+  );
 }
 
 type MapActionProps = {
