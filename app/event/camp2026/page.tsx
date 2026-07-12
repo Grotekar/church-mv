@@ -33,6 +33,8 @@ export default function Camp2026Page() {
     : fallbackHeroImage;
   const heroStyle = {
     "--camp-hero-image": `url("${withBasePath(heroBackgroundSrc)}")`,
+    "--camp-hero-mobile-position": eventContent.heroBackground.mobilePosition,
+    "--camp-hero-position": eventContent.heroBackground.position,
   } as CSSProperties;
 
   return (
@@ -43,24 +45,6 @@ export default function Camp2026Page() {
             <span className={styles.brandMark} />
             <span className={styles.brandText}>{eventContent.shortTitle}</span>
           </a>
-          <div className={styles.topbarActions}>
-            {hasDiskUrl ? (
-              <a
-                className={styles.topDiskLink}
-                href={eventContent.actions.diskUrl}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {eventContent.actions.diskPreview}
-              </a>
-            ) : (
-              <span
-                className={`${styles.topDiskLink} ${styles.topDiskLinkDisabled}`}
-              >
-                {eventContent.actions.diskPreview}
-              </span>
-            )}
-          </div>
         </nav>
 
         <section className={styles.heroContent} id="top">
