@@ -27,8 +27,12 @@ export const metadata: Metadata = {
 export default function Camp2026Page() {
   const hasDiskUrl = !isPlaceholder(eventContent.actions.diskUrl);
   const currentYear = new Date().getFullYear();
+  const fallbackHeroImage = eventContent.photos[0]?.src ?? "";
+  const heroBackgroundSrc = !isPlaceholder(eventContent.heroBackground.src)
+    ? eventContent.heroBackground.src
+    : fallbackHeroImage;
   const heroStyle = {
-    "--camp-hero-image": `url("${withBasePath(eventContent.photos[0].src)}")`,
+    "--camp-hero-image": `url("${withBasePath(heroBackgroundSrc)}")`,
   } as CSSProperties;
 
   return (
