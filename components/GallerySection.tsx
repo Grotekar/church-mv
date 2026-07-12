@@ -14,6 +14,11 @@ type GalleryPhoto = {
     src: string;
     width: number;
   };
+  originalImage?: {
+    height: number;
+    src: string;
+    width: number;
+  };
   title: string;
 };
 
@@ -164,6 +169,8 @@ function GalleryLightbox({
   onPrevious: () => void;
   photo: GalleryPhoto;
 }) {
+  const detailImage = photo.originalImage ?? photo.image;
+
   return (
     <div
       aria-label="Просмотр фотографии"
@@ -200,9 +207,9 @@ function GalleryLightbox({
           <Image
             alt={photo.alt}
             className="mx-auto max-h-[78vh] w-auto rounded-md object-contain"
-            height={photo.image.height}
-            src={withBasePath(photo.image.src)}
-            width={photo.image.width}
+            height={detailImage.height}
+            src={withBasePath(detailImage.src)}
+            width={detailImage.width}
           />
           <figcaption className="mt-3 text-center text-sm font-medium leading-6 text-church-background">
             {photo.title}

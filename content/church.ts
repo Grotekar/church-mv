@@ -130,11 +130,17 @@ export const churchContent = {
     description:
       "Церковная жизнь",
     // TODO: добавить только реальные фотографии церкви или мероприятий. Если фотографий нет, оставить массив пустым.
+    // Для лёгкой загрузки страницы image может указывать на сжатую версию, а originalImage — на исходник для просмотра.
     photos: [
       {
         image: {
           height: 360,
-          src: "/main/sunday-ministry.webp",
+          src: "/main/sunday-ministry.jpg",
+          width: 360,
+        },
+        originalImage: {
+          height: 360,
+          src: "/main/sunday-ministry-original.jpg",
           width: 360,
         },
         alt: "Воскресное богослужение",
@@ -154,6 +160,11 @@ export const churchContent = {
       },
     ] as Array<{
       image: {
+        height: number;
+        src: string;
+        width: number;
+      };
+      originalImage?: {
         height: number;
         src: string;
         width: number;
