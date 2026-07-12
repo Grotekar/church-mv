@@ -56,9 +56,6 @@ export default function Camp2026Page() {
                 {eventContent.actions.diskPreview}
               </span>
             )}
-            <Link className={styles.topLink} href="/">
-              Вернуться на сайт церкви
-            </Link>
           </div>
         </nav>
 
