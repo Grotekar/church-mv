@@ -18,23 +18,18 @@
 }
 
 .hero {
+  background: #fffaf3;
+}
+
+.heroVisual {
   position: relative;
   isolation: isolate;
+  min-height: clamp(430px, 72svh, 680px);
   overflow: hidden;
-  padding: 14px 14px 44px;
+  padding: 14px;
   color: #fffdf8;
   background: var(--camp-hero-image) var(--camp-hero-mobile-position, center center) /
     cover no-repeat;
-}
-
-.hero::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: "";
-  background:
-    linear-gradient(180deg, rgba(28, 23, 22, 0.78), rgba(28, 23, 22, 0.64)),
-    linear-gradient(120deg, rgba(184, 67, 53, 0.28), rgba(38, 33, 31, 0.36));
 }
 
 .topbar,
@@ -48,10 +43,34 @@
 }
 
 .topbar {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+}
+
+.heroScroll {
+  position: absolute;
+  right: 50%;
+  bottom: 22px;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fffdf8;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  transform: translateX(50%);
+}
+
+.heroScroll:focus-visible {
+  outline: 3px solid rgba(237, 189, 82, 0.72);
+  outline-offset: 4px;
 }
 
 .brand,
@@ -77,6 +96,7 @@
 }
 
 .brandText {
+  display: none;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -97,10 +117,7 @@
 }
 
 .heroContent {
-  display: grid;
-  align-content: end;
-  min-height: 520px;
-  padding-top: 46px;
+  padding-block: 34px 44px;
 }
 
 .eyebrow {
@@ -110,10 +127,6 @@
   font-weight: 800;
   line-height: 1.35;
   text-transform: uppercase;
-}
-
-.hero .eyebrow {
-  color: #ffdfad;
 }
 
 .title,
@@ -133,7 +146,7 @@
 .lead {
   max-width: 620px;
   margin: 18px 0 0;
-  color: rgba(255, 253, 248, 0.92);
+  color: var(--camp-muted);
   font-size: 1rem;
   line-height: 1.55;
 }
@@ -168,9 +181,9 @@
 }
 
 .buttonGhost {
-  border: 1px solid rgba(255, 255, 255, 0.34);
-  background: rgba(255, 255, 255, 0.12);
-  color: #fffdf8;
+  border: 1px solid rgba(38, 33, 31, 0.18);
+  background: rgba(255, 253, 248, 0.76);
+  color: var(--camp-ink);
 }
 
 .disabledButton {
@@ -488,20 +501,8 @@
   text-underline-offset: 4px;
 }
 
-@media (max-width: 620px) {
-  .topbar {
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .brand {
-    max-width: 100%;
-  }
-
-}
-
 @media (min-width: 520px) {
-  .hero {
+  .heroVisual {
     padding-inline: 22px;
   }
 
@@ -534,12 +535,33 @@
   }
 
   .hero {
-    padding: 20px 28px 58px;
+    background: #fffaf3;
+  }
+
+  .heroVisual {
+    min-height: clamp(560px, 78svh, 760px);
+    padding: 20px 28px;
     background-position: var(--camp-hero-position, center center);
   }
 
   .heroContent {
-    min-height: 600px;
+    padding-block: 44px 58px;
+  }
+
+  .topbar {
+    display: flex;
+  }
+
+  .heroScroll {
+    display: none;
+  }
+
+  .brand {
+    max-width: 56%;
+  }
+
+  .brandText {
+    display: inline;
   }
 
   .lead {

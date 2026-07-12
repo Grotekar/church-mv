@@ -14,7 +14,7 @@ export const camp2026Content = {
   heroBackground: {
     // Для смещения кадра можно использовать значения вроде "35% center", "left center" или "center top".
     mobilePosition: "center center",
-    position: "center center",
+    position: "top center",
     src: "/camp2026/background.webp",
   },
   actions: {

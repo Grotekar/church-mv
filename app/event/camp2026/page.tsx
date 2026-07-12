@@ -40,14 +40,19 @@ export default function Camp2026Page() {
   return (
     <div className={styles.page} style={heroStyle}>
       <header className={styles.hero}>
-        <nav className={styles.topbar} aria-label="Навигация страницы">
-          <a className={styles.brand} href="#top" aria-label="В начало страницы">
-            <span className={styles.brandMark} />
-            <span className={styles.brandText}>{eventContent.shortTitle}</span>
-          </a>
-        </nav>
+        <div className={styles.heroVisual} id="top">
+          <div className={styles.heroPoster}>
+            <a
+              aria-label="Перейти к содержанию страницы"
+              className={styles.heroScroll}
+              href="#camp-hero-content"
+            >
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
 
-        <section className={styles.heroContent} id="top">
+        <section className={styles.heroContent} id="camp-hero-content">
           <p className={styles.eyebrow}>{eventContent.subtitle}</p>
           <h1 className={styles.title}>{eventContent.title}</h1>
           <p className={styles.lead}>{eventContent.description}</p>
