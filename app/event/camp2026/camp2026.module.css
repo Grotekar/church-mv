@@ -22,17 +22,25 @@
 }
 
 .heroVisual {
-  position: relative;
-  isolation: isolate;
-  min-height: clamp(430px, 72svh, 680px);
-  overflow: hidden;
-  padding: 14px;
-  color: #fffdf8;
-  background: var(--camp-hero-image) var(--camp-hero-mobile-position, center center) /
-    cover no-repeat;
+  padding: calc(env(safe-area-inset-top) + 6px) 0 0;
 }
 
-.topbar,
+.heroPoster {
+  position: relative;
+  isolation: isolate;
+  width: min(100% - 12px, 640px);
+  height: calc(93svh - env(safe-area-inset-top) - 6px);
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+  background-color: #050910;
+  background-image: var(--camp-hero-image);
+  background-position: var(--camp-hero-mobile-position, center center);
+  background-repeat: no-repeat;
+  background-size: auto 94%;
+  box-shadow: 0 4px 12px rgba(80, 56, 34, 0.04);
+}
+
 .heroContent,
 .section,
 .finalSection,
@@ -42,30 +50,25 @@
   margin-inline: auto;
 }
 
-.topbar {
-  display: none;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
 .heroScroll {
   position: absolute;
   right: 50%;
-  bottom: 22px;
+  bottom: 88px;
   display: grid;
-  width: 48px;
-  height: 48px;
+  width: 34px;
+  height: 34px;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
-  color: #fffdf8;
-  font-size: 1.5rem;
+  background: transparent;
+  color: rgba(255, 253, 248, 0.74);
+  font-size: 1.08rem;
   font-weight: 800;
   line-height: 1;
   text-decoration: none;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.32);
   transform: translateX(50%);
+  animation: heroScrollHint 1.8s ease-in-out infinite;
 }
 
 .heroScroll:focus-visible {
@@ -73,51 +76,35 @@
   outline-offset: 4px;
 }
 
-.brand,
 .button,
 .churchBack {
   text-decoration: none;
 }
 
-.brand {
-  display: inline-flex;
-  align-items: center;
-  min-width: 0;
-  max-width: 56%;
-  min-height: 40px;
-  gap: 8px;
-  padding: 6px 10px 6px 6px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fffdf8;
-  font-size: 0.88rem;
-  font-weight: 800;
-}
-
-.brandText {
-  display: none;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.brandMark {
-  width: 28px;
-  height: 28px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    var(--camp-gold),
-    var(--camp-accent),
-    var(--camp-sky)
-  );
-  box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.32);
-}
-
 .heroContent {
-  padding-block: 34px 44px;
+  position: relative;
+  z-index: 1;
+  margin-top: -14px;
+  padding-block: 30px 42px;
+  border-radius: 28px 28px 0 0;
+  background: #fffaf3;
+}
+
+@keyframes heroScrollHint {
+  0%,
+  100% {
+    transform: translateX(50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(50%) translateY(5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroScroll {
+    animation: none;
+  }
 }
 
 .eyebrow {
@@ -502,8 +489,8 @@
 }
 
 @media (min-width: 520px) {
-  .heroVisual {
-    padding-inline: 22px;
+  .heroPoster {
+    width: min(100% - 20px, 680px);
   }
 
   .heroActions {
@@ -526,8 +513,12 @@
 
 @media (min-width: 768px) {
   .title {
-    max-width: 13ch;
-    font-size: clamp(3.4rem, 7vw, 5.6rem);
+    max-width: 18ch;
+    font-size: clamp(2.9rem, 4.7vw, 4.35rem);
+  }
+
+  .eyebrow {
+    margin-bottom: 8px;
   }
 
   .sectionTitle {
@@ -539,29 +530,27 @@
   }
 
   .heroVisual {
-    min-height: clamp(560px, 78svh, 760px);
-    padding: 20px 28px;
+    padding-top: calc(env(safe-area-inset-top) + 18px);
+  }
+
+  .heroPoster {
+    width: min(100% - 56px, 900px);
+    height: auto;
+    aspect-ratio: 3 / 2;
     background-position: var(--camp-hero-position, center center);
+    background-size: contain;
   }
 
   .heroContent {
-    padding-block: 44px 58px;
-  }
-
-  .topbar {
-    display: flex;
+    width: min(100% - 56px, 900px);
+    max-width: 900px;
+    margin-top: -8px;
+    padding-block: 34px 56px;
+    border-radius: 28px 28px 0 0;
   }
 
   .heroScroll {
     display: none;
-  }
-
-  .brand {
-    max-width: 56%;
-  }
-
-  .brandText {
-    display: inline;
   }
 
   .lead {

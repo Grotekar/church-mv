@@ -1,6 +1,6 @@
 export const camp2026Content = {
   slug: "camp2026",
-  title: "Выезд, который хочется сохранить",
+  title: "Выезд, который хочется запомнить",
   shortTitle: "Архыз - христианский выезд 2026",
   subtitle: "6 дней рядом",
   seo: {
@@ -13,9 +13,9 @@ export const camp2026Content = {
   // TODO: заменить на реальную фотографию для фона Hero, если она должна отличаться от фотографий галереи.
   heroBackground: {
     // Для смещения кадра можно использовать значения вроде "35% center", "left center" или "center top".
-    mobilePosition: "center center",
-    position: "top center",
-    src: "/camp2026/background.webp",
+    mobilePosition: "48% center",
+    position: "center center",
+    src: "/camp2026/hero-arkhyz-2026.webp",
   },
   actions: {
     gallery: "Смотреть избранное",
