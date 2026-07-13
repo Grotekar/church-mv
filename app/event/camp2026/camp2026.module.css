@@ -9,6 +9,7 @@
   --camp-gold: #edbd52;
   --camp-sky: #8db8d0;
   --camp-shadow: 0 2px 0px rgba(73, 54, 38, 0.13);
+  --camp-hero-desktop-width: 1120px;
   min-height: 100vh;
   overflow-x: clip;
   background: linear-gradient(180deg, #fff4e6 0%, #fffaf3 46%, #f2f8f4 100%);
@@ -199,6 +200,10 @@
 .footerText {
   color: var(--camp-muted);
   line-height: 1.62;
+}
+
+.sectionText {
+  margin: 18px 0 0;
 }
 
 .thanksSection {
@@ -534,7 +539,7 @@
   }
 
   .heroPoster {
-    width: min(100% - 56px, 900px);
+    width: min(100% - 56px, var(--camp-hero-desktop-width));
     height: auto;
     aspect-ratio: 3 / 2;
     background-position: var(--camp-hero-position, center center);
@@ -542,11 +547,18 @@
   }
 
   .heroContent {
-    width: min(100% - 56px, 900px);
-    max-width: 900px;
+    width: min(100% - 56px, 1120px);
+    max-width: 1120px;
     margin-top: -8px;
     padding-block: 34px 56px;
     border-radius: 28px 28px 0 0;
+  }
+
+  .heroContent > .eyebrow,
+  .heroContent > .title,
+  .heroContent > .lead,
+  .heroContent > .heroActions {
+    max-width: 720px;
   }
 
   .heroScroll {
@@ -558,13 +570,27 @@
   }
 
   .section {
-    padding: 56px 0;
+    padding: 44px 0;
   }
 
   .thanksSection {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap: 28px;
-    align-items: center;
+    gap: 22px;
+    align-items: start;
+    padding-top: 46px;
+    padding-bottom: 30px;
+  }
+
+  .thanksSection .softPanel {
+    border-width: 0 0 0 1px;
+    border-color: rgba(184, 67, 53, 0.22);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    padding: 4px 0 4px 18px;
+  }
+
+  .thanksSection + .section {
+    padding-top: 26px;
   }
 
   .finalPanel {
@@ -631,7 +657,18 @@
 
 @media (min-width: 1024px) {
   .section {
-    padding: 64px 0;
+    padding: 52px 0;
+  }
+
+  .thanksSection {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 36px;
+    padding-top: 56px;
+    padding-bottom: 34px;
+  }
+
+  .thanksSection + .section {
+    padding-top: 28px;
   }
 
   .carouselSlide {
