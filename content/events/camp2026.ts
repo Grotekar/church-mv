@@ -13,9 +13,10 @@ export const camp2026Content = {
   // TODO: заменить на реальную фотографию для фона Hero, если она должна отличаться от фотографий галереи.
   heroBackground: {
     // Для смещения кадра можно использовать значения вроде "35% center", "left center" или "center top".
-    mobilePosition: "48% center",
+    mobilePosition: "51% center",
     position: "center center",
-    src: "/camp2026/hero-arkhyz-2026.webp",
+    // src: "/camp2026/hero-arkhyz-2026.webp",
+    src: "/camp2026/background.webp",
   },
   actions: {
     gallery: "Смотреть избранное",

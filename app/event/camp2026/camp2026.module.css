@@ -30,7 +30,7 @@
   position: relative;
   isolation: isolate;
   width: min(100% - 12px, 640px);
-  height: calc(93svh - env(safe-area-inset-top) - 6px);
+  height: calc(88svh - env(safe-area-inset-top) - 36px);
   margin-inline: auto;
   overflow: hidden;
   border-radius: 16px 16px 0 0;
